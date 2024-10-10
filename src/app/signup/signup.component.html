@@ -1,0 +1,73 @@
+<div *ngIf="!signedup">
+    <div class="signup-container">
+        <div class="signup-inner-box">
+    
+            <h2>Create Account</h2>
+            <div class="progress-bar">
+              <div [ngClass]="{'active': currentStep === 1}"></div>
+              <div [ngClass]="{'active': currentStep === 2}"></div>
+            </div>
+      
+          <form *ngIf="currentStep === 1" >
+            <div class="input-group">
+              <label>Enter Email ID</label>
+              <input type="email" placeholder="Loremipsum@gmail.com" [(ngModel)]="email" name="email" (input)="validateEmail()">
+
+              <div *ngIf="emailError" style="color: red; font-size: 12px;">{{ emailError }}</div>
+            </div>
+            <div class="input-group">
+              <label>Enter Full name</label>
+              <input type="text" placeholder="Full name" [(ngModel)]="fullName" name="fullName">
+            </div>
+            <div class="input-group">
+              <label>Create Password</label>
+              <input type="password" placeholder="Password" [(ngModel)]="password" name="password">
+            </div>
+            <button type="submit" class="btn" (click)="nextStep()">Next</button>
+          </form>
+      
+          <form *ngIf="currentStep === 2" >
+            <button (click)="previousStep()" type="button" class="back-btn">Go Back</button>
+            <div class="input-group">
+              <label>Organization Name</label>
+              <input type="text" [(ngModel)]="orgName" name="orgName" (blur)="validateOrgName()">
+    
+              <div style="color: red; font-size: 12px;" *ngIf="invorg">Unknown organization-id</div>
+            </div>
+            <!-- <div class="input-group">
+                <label>Organization Id</label>
+                <input  type="text" [(ngModel)]="orgid" name="orgid" [disabled]=true>
+            </div> -->
+            <div class="input-group">
+              <label>Designation</label>
+              <select [(ngModel)]="designation" name="designation">
+                <option *ngFor="let desig of designations" [value]="desig" >{{ desig }}</option>
+              </select>
+            </div>
+            <div class="input-group">
+              <label>Birth Date</label>
+              <input type="date" [(ngModel)]="birthdate" name="birthdate">
+            </div>
+            <div class="input-group" style="display: flex;">
+                <div>
+                    <label>City</label>
+                    <input type="text" [(ngModel)]="city" name="city">
+                </div>
+                <div style=" padding-left: 65px;">
+                    <label>Pincode</label>
+                    <input type="number" [(ngModel)]="pincode" name="pincode" (blur)="validatepin()">
+                </div>
+            </div>
+            
+            <button type="submit" class="btn" (click)="onSubmit()">Submit</button>
+          </form>
+        </div>
+      </div>
+</div>
+<div class="aftersignup" *ngIf="signedup">
+  <p style="font-size: 50px;color: black">
+    Welcome to Softiwa Technologies<br>
+    <span style="font-size: 18px;color: #555;">Please wait while we Redirect....</span>
+  </p>
+</div>
+  

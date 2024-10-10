@@ -1,0 +1,15 @@
+<h2>Welcome</h2>
+<form>
+    <div class="input-group">
+        <label>Enter Email ID</label>
+        <input type="email" id="email" placeholder="Enter Email Id" name="email" [(ngModel)]="email" #emailInput="ngModel" (input)="validateEmail()">
+
+        <div *ngIf="emailError" style="color: red; font-size: 12px;">{{ emailError }}</div>
+    </div>
+    <p>(OR)</p>
+    <div class="input-group">
+        <label>Enter Mobile No.</label>
+        <input type="tel" id="mobile" placeholder="+91" [(ngModel)]="mob" name="mob">
+    </div>
+    <button type="submit" class="btn" (click)="gonext()">Next</button>
+</form>
